@@ -27,6 +27,10 @@ module.exports = function(env, options) {
       contentBase: path.join(__dirname, 'dist'),
       historyApiFallback: true,
       hot: true,
+<<<<<<< HEAD
+=======
+      // inline: true
+>>>>>>> 4c196678698c1ec859159671d5b92e820617e0f4
     },
     devtool: env.prod ? 'source-maps' : 'eval',
     plugins: [
