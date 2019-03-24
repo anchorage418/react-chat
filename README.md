@@ -3,7 +3,9 @@
 ```sh
 $ yarn install
 
-$ yarn start
+First tab: $ yarn start
+
+Second tab: $ yarn nodemon
 ```
 
 # Production

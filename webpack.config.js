@@ -1,30 +1,11 @@
 const path = require('path');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 // const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const DashboardPlugin = require("webpack-dashboard/plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
-// console.log('process.env.NODE_ENV 1', process.env.NODE_ENV);
-// dotenv.config();
-// console.log('process.env.NODE_ENV 2', process.env.NODE_ENV);
-
-// const MODE = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-
-// const configPath = {};
-// if (environment === 'production') configPath.path = '.env.production';
-// dotenv.config(configPath).parsed;
-
-// let PORT = process.env.PORT || 3000;
-// const HOST = process.env.HOST || 'localhost';
-// const SSL = process.env.SSL ? 's' : '';
-// if (environment === 'development') PORT = 3010;
-// if (process.env.ASSETS_NO_PORT === 'true') PORT = '';
-
-// const publicPath = `http${SSL}://${HOST}:${PORT}/assets/`;
-// console.log('publicPath', publicPath)
 
 module.exports = function(env, options) {
   console.log('env', env);
@@ -45,7 +26,8 @@ module.exports = function(env, options) {
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
       historyApiFallback: true,
-      hot: true
+      hot: true,
+      // 
     },
     devtool: env.prod ? 'source-maps' : 'eval',
     plugins: [
@@ -80,11 +62,17 @@ module.exports = function(env, options) {
       ],
     },
     resolve: {
+      modules: ['node_modules'],
       alias: {
         src: path.resolve(__dirname, 'src'),
         components: path.resolve(__dirname, 'src/components/'),
-        containers: path.resolve(__dirname, 'src/containers/')
-      }
+        containers: path.resolve(__dirname, 'src/containers/'),
+        styles: path.resolve(__dirname, 'src/styles/'),
+        assets: path.resolve(__dirname, 'src/assets/'),
+        utils: path.resolve(__dirname, 'src/utils/'),
+        sockets: path.resolve(__dirname, 'src/sockets/')
+      },
+      extensions: ['.js', '.jsx', '.json']
     },
     module: {
       rules: [
@@ -132,4 +120,4 @@ module.exports = function(env, options) {
       ]
     }
   }
-}
+};
